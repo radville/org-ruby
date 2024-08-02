@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rubypants'
 
 module Orgmode
@@ -301,7 +303,7 @@ module Orgmode
 
     # Saves the loaded orgmode file as a textile file.
     def to_textile
-      output = ""
+      output = +""
       output_buffer = TextileOutputBuffer.new(output)
 
       translate(@header_lines, output_buffer)
@@ -317,7 +319,7 @@ module Orgmode
       export_options = {
         :markup_file        => @parser_options[:markup_file]
       }
-      output = ""
+      output = +""
       output_buffer = MarkdownOutputBuffer.new(output, export_options)
 
       translate(@header_lines, output_buffer)
@@ -349,7 +351,7 @@ module Orgmode
         :markup_file           => @parser_options[:markup_file]
       }
       export_options[:skip_tables] = true if not export_tables?
-      output = ""
+      output = +""
       output_buffer = HtmlOutputBuffer.new(output, export_options)
 
       if @in_buffer_settings["TITLE"]

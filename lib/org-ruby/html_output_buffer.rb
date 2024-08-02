@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Orgmode
 
   class HtmlOutputBuffer < OutputBuffer
@@ -191,7 +193,7 @@ module Orgmode
           @output << inline_formatting(@buffer)
         end
       end
-      @buffer = ""
+      @buffer = +""
     end
 
     def add_line_attributes headline
@@ -214,7 +216,7 @@ module Orgmode
 
       @output << "\n<div id=\"footnotes\">\n<h2 class=\"footnotes\">Footnotes:</h2>\n<div id=\"text-footnotes\">\n"
       @footnotes.each do |name, (defi, content)|
-        @buffer = defi
+        @buffer = +defi
         @output << "<div class=\"footdef\"><sup><a id=\"fn.#{name}\" href=\"#fnr.#{name}\">#{name}</a></sup>" \
                 << "<p class=\"footpara\">" \
                 << inline_formatting(@buffer) \
@@ -424,7 +426,7 @@ module Orgmode
     #      # => "Usage: foo &quot;bar&quot; &lt;baz&gt;"
     private
     def escapeHTML(string)
-      string.gsub(/['&\"<>]/, TABLE_FOR_ESCAPE_HTML__)
+      +(string.gsub(/['&\"<>]/, TABLE_FOR_ESCAPE_HTML__))
     end
   end                           # class HtmlOutputBuffer
 end                             # module Orgmode

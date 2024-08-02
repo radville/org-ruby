@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'logger'
 
 module Orgmode
@@ -20,7 +22,7 @@ module Orgmode
       # This is the accumulation buffer. It's a holding pen so
       # consecutive lines of the right type can get stuck together
       # without intervening newlines.
-      @buffer = ""
+      @buffer = +""
 
       # This stack is used to do proper outline numbering of
       # headlines.

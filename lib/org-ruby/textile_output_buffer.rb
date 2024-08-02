@@ -144,7 +144,7 @@ module Orgmode
         end
         @output << inline_formatting(@buffer) << "\n"
       end
-      @buffer = ""
+      @buffer = +""
     end
 
     def add_line_attributes headline
