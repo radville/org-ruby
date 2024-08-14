@@ -40,7 +40,7 @@ describe Orgmode::RegexpHelper do
       "/" => "i",
       "~" => "code"
     }
-    n = e.rewrite_emphasis("This string contains *bold*, /italic/, and ~verbatim~ text.") do |border, str|
+    n = e.rewrite_emphasis(+"This string contains *bold*, /italic/, and ~verbatim~ text.") do |border, str|
       "<#{map[border]}>#{str}</#{map[border]}>"
     end
     n = e.restore_code_snippets n
@@ -50,15 +50,15 @@ describe Orgmode::RegexpHelper do
 
   it "should allow link rewriting" do
     e = Orgmode::RegexpHelper.new
-    str = e.rewrite_links("[[http://www.bing.com]]") do |link,text|
+    str = e.rewrite_links(+"[[http://www.bing.com]]") do |link,text|
       text ||= link
       "\"#{text}\":#{link}"
     end
     expect(str).to eql("\"http://www.bing.com\":http://www.bing.com")
-    str = e.rewrite_links("<http://www.google.com>") do |link|
+    str = e.rewrite_links(+"<http://www.google.com>") do |link|
       "\"#{link}\":#{link}"
     end
-    expect(str).to eql("\"http://www.google.com\":http://www.google.com")
+    expect(str).to eql(+"\"http://www.google.com\":http://www.google.com")
   end
 
   it "should allow quotes within code markup" do
@@ -66,7 +66,7 @@ describe Orgmode::RegexpHelper do
     map = {
       "~" => "code"
     }
-    n = e.rewrite_emphasis('This string contains a quote using code markup: ~"~') do |border, str|
+    n = e.rewrite_emphasis(+'This string contains a quote using code markup: ~"~') do |border, str|
       "<#{map[border]}>#{str}</#{map[border]}>"
     end
     n = e.restore_code_snippets n
