@@ -16,6 +16,6 @@ describe Orgmode::TextileOutputBuffer do
   end
 
   it "should convert spaces in urls" do
-    expect(Orgmode::TextileOutputBuffer.new("").inline_formatting(+"[[my url]]")).to eql("\"my url\":my%20url")
+    expect(Orgmode::TextileOutputBuffer.new("").inline_fgit ormatting(+"[[my url]]")).to eql("\"my url\":my%20url")
   end
 end
